@@ -1,0 +1,22 @@
+{
+  "name": "nft",
+  "version": "1.0.0",
+  "license": "(MIT AND Apache-2.0)",
+  "scripts": {
+    "start": "cd frontend && pnpm run start",
+    "deploy": "cd contract && ./deploy.sh",
+    "build": "pnpm run build:contract && pnpm run build:web",
+    "build:web": "cd frontend && pnpm run build",
+    "build:contract": "cd contract && ./build.sh",
+    "test": "pnpm run test:unit && pnpm run test:integration",
+    "test:unit": "cd contract && cargo test",
+    "test:integration": "cd integration-tests && cargo run --example integration-tests \"../contract/target/wasm32-unknown-unknown/release/hello_near.wasm\"",
+    "postinstall": "cd frontend && pnpm install && cd .. && echo rs tests && echo rs contract"
+  },
+  "devDependencies": {
+    "near-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "events": "^3.3.0"
+  }
+}
